@@ -41,3 +41,11 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+/packages
+/exportSpine.GUI/obj
+/exportSpine.GUI/bin
+/exportSpine.Core/obj
+/exportSpine.Core/bin
+/exportSpine.Command/obj
+/exportSpine.Command/bin
+/.vs/exportSpine/v14
