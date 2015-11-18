@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using exportSpine.Core;
 using System.IO;
+using System.Configuration;
 
 namespace exportSpine.Command
 {
@@ -12,13 +13,15 @@ namespace exportSpine.Command
     {
         static void Main(string[] args)
         {
-            var sourceFolder = @"D:\work\flight\trunk\cocostudio\spine动画工程";
-            var outputFolder = @"D:\work\flight\trunk\cocostudio\spine动画工程\export";
-            var settingFiles = Directory.GetFiles(sourceFolder, "spinesetting.json", SearchOption.AllDirectories);
+            var sourceFolder = ConfigurationSettings.AppSettings["sourceFolder"]; //@"D:\work\flight\trunk\cocostudio\spine动画工程";
+            var outputFolder = ConfigurationSettings.AppSettings["outputFolder"]; //@"D:\work\flight\trunk\cocostudio\spine动画工程\export";
+
+            var spineFiles = Directory.GetFiles(sourceFolder, "*.spine", SearchOption.AllDirectories);
+            //var settingFiles = Directory.GetFiles(sourceFolder, "spinesetting.json", SearchOption.AllDirectories);
             
-            foreach(var settingFile in settingFiles)
+            foreach(var spineFileName in spineFiles)
             {
-                spineExporter.export(settingFile, outputFolder);
+                spineExporter.export(spineFileName, "spinesetting.json", outputFolder);
             }
 
             

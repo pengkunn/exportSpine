@@ -135,12 +135,17 @@ namespace exportSpine.Core
             try
             {
                 if (Directory.Exists(Path.Combine(folderFullName, exportFolderName)))
-                    Directory.Delete(Path.Combine(folderFullName, exportFolderName),true);
+                {
+                    Directory.Delete(Path.Combine(folderFullName, exportFolderName), true);
+                }
+                Directory.CreateDirectory(Path.Combine(folderFullName, exportFolderName));
+
 
                 Process p = new Process();
                 p.StartInfo.WorkingDirectory = folderFullName;
                 p.StartInfo.FileName = "spine.com"; //确定程序名
                 p.StartInfo.Arguments = @"-i " + spineFileName + " -o " + exportFolderName + " -e " + settingFileName; //确定程式命令行
+                Console.WriteLine(@"-i " + spineFileName + " -o " + exportFolderName + " -e " + settingFileName);
                 p.StartInfo.UseShellExecute = false; //Shell的使用
                 p.StartInfo.RedirectStandardInput = true; //重定向输入
                 p.StartInfo.RedirectStandardOutput = true; //重定向输出
